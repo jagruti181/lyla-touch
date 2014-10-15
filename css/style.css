@@ -191,3 +191,6 @@ img.socialicons {
     background-color: #03e1e4 !important;
     color: #fff;
 }
+.imageheight {
+    overflow: hidden
+}
