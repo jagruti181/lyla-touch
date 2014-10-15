@@ -2,7 +2,7 @@ angular.module('starter.controllers', ['myservices'])
 
 .controller('TabCtrl', function ($scope, $stateParams, MyServices) {
     //get total cart
-    var totalcartsuccess = function(data, status) {
+    var totalcartsuccess = function (data, status) {
         MyServices.setobj(parseInt(data));
         $scope.obj = MyServices.getobj();
     }
@@ -40,19 +40,19 @@ angular.module('starter.controllers', ['myservices'])
             $scope.loginlogouttext = "Logout";
         }
     };
-    $scope.imagewidth={};
-    $scope.imagewidth.width=window.innerWidth/3-15;
-    
-    $( window ).resize(function() {
-        $scope.imagewidth.width=window.innerWidth/3-15;
+    $scope.imagewidth = {};
+    $scope.imagewidth.width = window.innerWidth / 3 - 15;
+
+    $(window).resize(function () {
+        $scope.imagewidth.width = window.innerWidth / 3 - 15;
         console.log("Resized is called");
         $scope.$apply();
     });
-    
-    
+
+
     MyServices.authenticate().success(authenticate);
-    
-    
+
+
     var categoryId = $stateParams.cid;
 
     $scope.productItem = [];
@@ -81,18 +81,18 @@ angular.module('starter.controllers', ['myservices'])
 
 })
 
-.controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicPopup, $timeout, $ionicLoading, MyServices, $location,$state) {
+.controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicPopup, $timeout, $ionicLoading, MyServices, $location, $state) {
     //addtowishlist
-    
-    $scope.showbutton=$state.current.name;
-    
+
+    $scope.showbutton = $state.current.name;
+
     $scope.addtowishlist = function () {
-        MyServices.addtowishlist($scope.userid, $scope.item.product.id); 
+        MyServices.addtowishlist($scope.userid, $scope.item.product.id);
         $scope.wishlistPopup();
     }
-    
+
     var authenticate = function (data, status) {
-        $scope.userid=data.id;
+        $scope.userid = data.id;
     };
     MyServices.authenticate().success(authenticate);
     //addtowishlist popup
@@ -111,7 +111,7 @@ angular.module('starter.controllers', ['myservices'])
         }, 1500);
     };
 
-    
+
     //addtocart popup
     $scope.showPopup = function () {
         $scope.data = {}
@@ -146,20 +146,20 @@ angular.module('starter.controllers', ['myservices'])
     };
     MyServices.getproductdetails(productId).success(onsuccess);
 
-    var totalcartsuccess = function(data, status) {
+    var totalcartsuccess = function (data, status) {
         MyServices.setobj(parseInt(data));
         $scope.obj = MyServices.getobj();
     }
-    var cartsuccess=function() {
-        MyServices.gettotalcart().success(totalcartsuccess); 
-        
+    var cartsuccess = function () {
+        MyServices.gettotalcart().success(totalcartsuccess);
+
     };
     //Add to cart
     $scope.addtocart = function (id, name, price, quantity) {
         MyServices.addtocart(id, name, price, quantity).success(cartsuccess);
         $scope.showPopup();
         //get total cart
-        
+
     };
 
     //SLIDE BOX
@@ -173,35 +173,64 @@ angular.module('starter.controllers', ['myservices'])
         $ionicSlideBoxDelegate.update();
         $ionicLoading.hide();
     }, 2000);
-    
-    var changelocation=function(data)
-    {
+
+    var changelocation = function (data) {
         $location.url("/tab/dash/categories/product/" + data.id);
     };
     $scope.next = function (product) {
-        MyServices.nextproduct(product,1).success(changelocation);
+        MyServices.nextproduct(product, 1).success(changelocation);
     };
     $scope.previous = function (product) {
-        MyServices.nextproduct(product,0).success(changelocation);
+        MyServices.nextproduct(product, 0).success(changelocation);
     };
+
+    //share this popup
+    $scope.sharePopup = function () {
+        $scope.data = {}
+
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            templateUrl: 'templates/share.html',
+            title: 'Share!',
+            scope: $scope,
+
+        });
+        $scope.closeShare = function() {
+            myPopup.close();
+        };
+    };
+
 
 })
 
+
+.controller('ShareProductCtrl', function ($scope, $stateParams, MyServices) {
+    //get share it
+    //console.log("Chutia banauya");
+    stButtons.makeButtons();
+    stLight.options({
+        publisher: "4c832d7b-fb34-487d-801e-84e56649a4b0",
+        doNotHash: false,
+        doNotCopy: false,
+        hashAddressBar: false
+    });
+    
+})
 
 
 .controller('WishlistCtrl', function ($scope, $stateParams, MyServices) {
     //get wishlist
     var authenticate = function (data, status) {
-        $scope.userid=data.id;
+        $scope.userid = data.id;
         MyServices.showwishlist($scope.userid).success(onwishlistsuccess);
     };
     MyServices.authenticate().success(authenticate);
-    
-    var onwishlistsuccess = function(data,status) {
+
+    var onwishlistsuccess = function (data, status) {
         console.log(data);
         $scope.wishlists = data;
     }
-    
+
 })
 
 .controller('AccountCtrl', function ($scope) {
@@ -210,7 +239,7 @@ angular.module('starter.controllers', ['myservices'])
 
 .controller('CartCtrl', function ($scope, $stateParams, MyServices) {
     //Product details
-    $scope.subtotal=0;
+    $scope.subtotal = 0;
     var onproductsuccess = function (data, status) {
         for (var i = 0; i < $scope.products.length; i++) {
             if ($scope.products[i].id == data.product.id) {
@@ -219,8 +248,8 @@ angular.module('starter.controllers', ['myservices'])
         }
     };
 
-    
-     var getsubtotal = function (data, status) {
+
+    var getsubtotal = function (data, status) {
         console.log(data);
         $scope.subtotal = parseFloat(data);
         calcdiscountamount();
@@ -280,7 +309,7 @@ angular.module('starter.controllers', ['myservices'])
     $scope.checkcoupon = function (couponcode) {
         MyServices.getdiscountcoupon(couponcode).success(couponsuccess);
     };
-    var totalcartsuccess = function(data, status) {
+    var totalcartsuccess = function (data, status) {
         MyServices.setobj(parseInt(data));
     };
 
@@ -292,8 +321,8 @@ angular.module('starter.controllers', ['myservices'])
     $scope.deletecart = function (id) {
         MyServices.deletecartfromsession(id).success(ondeletesuccess);
         //get total cart
-       
-        
+
+
     };
 
     //Total
@@ -377,30 +406,30 @@ angular.module('starter.controllers', ['myservices'])
     //check out chart
 
 
-//    var handler = StripeCheckout.configure({
-//        key: 'pk_live_I1udSOaNJK4si3FCMwvHsY4g',
-//        //key: 'pk_test_4etgLi16WbODEDr4YBFdcbP0',
-//        image: 'img/logo.jpg',
-//        currency: 'GBP',
-//        token: function (token) {
-//            MyServices.chargestripe(token.id, $scope.form.email, ($scope.subtotal + $scope.form.shippingcost - $scope.discountamount), ($scope.form.firstname + " " + $scope.form.lastname)).success(paymentcomplete);
-//            //window.location.href="http://www.lylaloves.co.uk/#/thankyou";
-//            // Use the token to create the charge with a server-side script.
-//            // You can access the token ID with `token.id`
-//        }
-//    });
-//
-//    $scope.StipePaymentGen = function (amount) {
-//
-//
-//        handler.open({
-//            name: 'Lyla Loves',
-//            description: 'Total Amount: £ ' + amount,
-//            amount: amount * 100,
-//
-//        });
-//
-//    };
+    //    var handler = StripeCheckout.configure({
+    //        key: 'pk_live_I1udSOaNJK4si3FCMwvHsY4g',
+    //        //key: 'pk_test_4etgLi16WbODEDr4YBFdcbP0',
+    //        image: 'img/logo.jpg',
+    //        currency: 'GBP',
+    //        token: function (token) {
+    //            MyServices.chargestripe(token.id, $scope.form.email, ($scope.subtotal + $scope.form.shippingcost - $scope.discountamount), ($scope.form.firstname + " " + $scope.form.lastname)).success(paymentcomplete);
+    //            //window.location.href="http://www.lylaloves.co.uk/#/thankyou";
+    //            // Use the token to create the charge with a server-side script.
+    //            // You can access the token ID with `token.id`
+    //        }
+    //    });
+    //
+    //    $scope.StipePaymentGen = function (amount) {
+    //
+    //
+    //        handler.open({
+    //            name: 'Lyla Loves',
+    //            description: 'Total Amount: £ ' + amount,
+    //            amount: amount * 100,
+    //
+    //        });
+    //
+    //    };
 
     $scope.newquantity = [];
     var showcart = function (data, status) {
