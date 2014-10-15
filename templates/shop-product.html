@@ -11,7 +11,9 @@
             <ion-slide-box show-pager="true" auto-play="true" pager-click="true">
                 <ion-slide ng-repeat="itemimg in item.productimage">
                     <div class="box">
-                        <img ng-src="{{itemimg.image|imagepathbig}}" class="full-image">
+                        <ion-scroll zooming="true" direction="x" min-zoom="1">
+                            <img ng-src="{{itemimg.image|imagepathbig}}" class="full-image">
+                        </ion-scroll>
                     </div>
                 </ion-slide>
             </ion-slide-box>
