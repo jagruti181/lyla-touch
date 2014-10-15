@@ -40,7 +40,19 @@ angular.module('starter.controllers', ['myservices'])
             $scope.loginlogouttext = "Logout";
         }
     };
+    $scope.imagewidth={};
+    $scope.imagewidth.width=window.innerWidth/3-15;
+    
+    $( window ).resize(function() {
+        $scope.imagewidth.width=window.innerWidth/3-15;
+        console.log("Resized is called");
+        $scope.$apply();
+    });
+    
+    
     MyServices.authenticate().success(authenticate);
+    
+    
     var categoryId = $stateParams.cid;
 
     $scope.productItem = [];
