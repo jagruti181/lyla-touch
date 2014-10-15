@@ -183,3 +183,11 @@ img.socialicons {
 .productItem {
     position: relative;
 }
+.input-label {
+    color: #A3A3A3;
+    font-weight: 500;
+}
+.tabs .tab-item .badge.badge-royal, .badge.badge-royal {
+    background-color: #03e1e4 !important;
+    color: #fff;
+}

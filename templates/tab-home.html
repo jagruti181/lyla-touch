@@ -1,5 +1,5 @@
 <ion-view title="Lyla Loves">
-    <ion-content class="has-header padding">
+    <ion-content class="has-header">
         <center>
             <a href="http://www.instagram.com/lyla_loves" target="_blank">
                 <img src="img/insta.png" class="socialicons">
@@ -18,14 +18,17 @@
             </a>
 
             <div class="padding">
+                <a href="#/tab/dash">
                 <img src="img/logo.jpg" style="width:40%;">
+                </a>
             </div>
+            
             <div class="padding">
                 <img src="img/pick.png" style="width:90%;">
-                
-                    <div class="productset">
-                        <div class="imageset">
-<!--
+
+                <div class="productset">
+                    <div class="imageset">
+                        <!--
                             <a ng-click="slidesetprev(showslideset1);">
                                 <div class="toggle left">
                                     <img src="img/leftbanner.png">
@@ -37,23 +40,22 @@
                                 </div>
                             </a>  
 -->
-                            <ion-scroll direction="x" >
-                                <div class="row">
-                                    <div class="col col-20" ng-repeat="slider in sliders">
-                                        <a href="#/tab/dash/home/product/{{slider.link}}">
+                        <ion-scroll direction="x">
+                            <div class="row">
+                                <div class="col col-20" ng-repeat="slider in sliders">
+                                    <a href="#/tab/home/product/{{slider.link}}">
                                         <img src="{{slider.image|imagepath}}" class="full-image">
                                         <p class="royal productprice">{{slider.price|noFractionCurrency}}</p>
-                                        </a>
-                                    </div>
+                                    </a>
                                 </div>
-                            </ion-scroll>
-                            
-                                                                                                       
-                        </div>
+                            </div>
+                        </ion-scroll>
+
                     </div>
-                
+                </div>
                 
             </div>
+            
             <div class="padding">
                 <img src="img/butterfly.png" style="width:70%;">
             </div>

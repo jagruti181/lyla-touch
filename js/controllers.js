@@ -1,5 +1,16 @@
 angular.module('starter.controllers', ['myservices'])
 
+.controller('TabCtrl', function ($scope, $stateParams, MyServices) {
+    //get total cart
+    var totalcartsuccess = function(data, status) {
+        MyServices.setobj(parseInt(data));
+        $scope.obj = MyServices.getobj();
+    }
+    MyServices.gettotalcart().success(totalcartsuccess);
+
+
+})
+
 .controller('HomeCtrl', function ($scope, $stateParams, MyServices) {
 
     var slidersuccess = function (data, status) {
@@ -58,8 +69,38 @@ angular.module('starter.controllers', ['myservices'])
 
 })
 
-.controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicPopup, $timeout, $ionicLoading, MyServices) {
+.controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicPopup, $timeout, $ionicLoading, MyServices, $location,$state) {
+    //addtowishlist
+    
+    $scope.showbutton=$state.current.name;
+    
+    $scope.addtowishlist = function () {
+        MyServices.addtowishlist($scope.userid, $scope.item.product.id); 
+        $scope.wishlistPopup();
+    }
+    
+    var authenticate = function (data, status) {
+        $scope.userid=data.id;
+    };
+    MyServices.authenticate().success(authenticate);
+    //addtowishlist popup
+    $scope.wishlistPopup = function () {
+        $scope.data = {}
 
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="text-center"><h1 class="ion-ios7-heart assertive"></h1><p>' + $scope.item.product.name + ' added to wishlist!</p>',
+            title: 'Added to wishlist!',
+            scope: $scope,
+
+        });
+        $timeout(function () {
+            myPopup.close(); //close the popup after 3 seconds for some reason
+        }, 1500);
+    };
+
+    
+    //addtocart popup
     $scope.showPopup = function () {
         $scope.data = {}
 
@@ -93,12 +134,20 @@ angular.module('starter.controllers', ['myservices'])
     };
     MyServices.getproductdetails(productId).success(onsuccess);
 
+    var totalcartsuccess = function(data, status) {
+        MyServices.setobj(parseInt(data));
+        $scope.obj = MyServices.getobj();
+    }
+    var cartsuccess=function() {
+        MyServices.gettotalcart().success(totalcartsuccess); 
+        
+    };
     //Add to cart
     $scope.addtocart = function (id, name, price, quantity) {
-
-        MyServices.addtocart(id, name, price, quantity);
+        MyServices.addtocart(id, name, price, quantity).success(cartsuccess);
         $scope.showPopup();
-
+        //get total cart
+        
     };
 
     //SLIDE BOX
@@ -112,11 +161,36 @@ angular.module('starter.controllers', ['myservices'])
         $ionicSlideBoxDelegate.update();
         $ionicLoading.hide();
     }, 2000);
+    
+    var changelocation=function(data)
+    {
+        $location.url("/tab/dash/categories/product/" + data.id);
+    };
+    $scope.next = function (product) {
+        MyServices.nextproduct(product,1).success(changelocation);
+    };
+    $scope.previous = function (product) {
+        MyServices.nextproduct(product,0).success(changelocation);
+    };
+
 })
 
-.controller('LookbookCtrl', function ($scope, $stateParams) {})
 
-.controller('LookbookitemCtrl', function ($scope) {})
+
+.controller('WishlistCtrl', function ($scope, $stateParams, MyServices) {
+    //get wishlist
+    var authenticate = function (data, status) {
+        $scope.userid=data.id;
+        MyServices.showwishlist($scope.userid).success(onwishlistsuccess);
+    };
+    MyServices.authenticate().success(authenticate);
+    
+    var onwishlistsuccess = function(data,status) {
+        console.log(data);
+        $scope.wishlists = data;
+    }
+    
+})
 
 .controller('AccountCtrl', function ($scope) {
 
@@ -194,13 +268,20 @@ angular.module('starter.controllers', ['myservices'])
     $scope.checkcoupon = function (couponcode) {
         MyServices.getdiscountcoupon(couponcode).success(couponsuccess);
     };
+    var totalcartsuccess = function(data, status) {
+        MyServices.setobj(parseInt(data));
+    };
 
     //Remove item
     var ondeletesuccess = function () {
         MyServices.getcart().success(onsuccess);
+        MyServices.gettotalcart().success(totalcartsuccess);
     };
     $scope.deletecart = function (id) {
         MyServices.deletecartfromsession(id).success(ondeletesuccess);
+        //get total cart
+       
+        
     };
 
     //Total

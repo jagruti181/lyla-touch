@@ -3,12 +3,21 @@ var adminurl = 'http://lyla@lylaloves.co.uk/admin/index.php/json/';
 var myservices = angular.module('myservices', [])
 
 .factory('MyServices', function ($http, $location) {
+    var obj={};
+    obj.badge=0;
     var retailer = 0;
     var category = 0;
     var useremail ="";
     var coupondetails=$.jStorage.get("coupon");
     var discount=$.jStorage.get("coupon");
     return {
+        getobj : function() 
+        {
+            return obj;
+        },
+        setobj : function(val) {
+            obj.badge=val;
+        },
         getuseremail: function() {
             return useremail;
         },
@@ -189,6 +198,10 @@ var myservices = angular.module('myservices', [])
             }, {
                 withCredentials: true
             });
+        },
+        nextproduct: function(product,next)
+        {
+            return $http.get(adminurl + 'nextproduct',{params:{id:product,next:next}});
         },
     }
 });

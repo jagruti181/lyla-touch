@@ -36,7 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
     .state('tab', {
         url: "/tab",
         abstract: true,
-        templateUrl: "templates/tabs.html"
+        templateUrl: "templates/tabs.html",
+        controller: 'TabCtrl'
     })
 
     // Each tab has its own nav history stack:
@@ -80,9 +81,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
             }
         }
     })
-    
+
+    .state('tab.productwish', {
+        url: '/account/wishlist/product/:pid',
+        views: {
+            'tab-account': {
+                templateUrl: 'templates/shop-product.html',
+                controller: 'ProductCtrl'
+            }
+        }
+    })
     .state('tab.producthome', {
-        url: '/dash/home/product/:pid',
+        url: '/home/product/:pid',
         views: {
             'tab-home': {
                 templateUrl: 'templates/shop-product.html',
@@ -142,6 +152,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
                 'tab-account': {
                     templateUrl: 'templates/account-signup.html',
                     controller: 'LoginCtrl'
+                }
+            }
+        })
+
+        .state('tab.wishlist', {
+            url: '/account/wishlist',
+            views: {
+                'tab-account': {
+                    templateUrl: 'templates/account-wishlist.html',
+                    controller: 'WishlistCtrl'
                 }
             }
         })

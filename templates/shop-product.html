@@ -1,6 +1,13 @@
 <ion-view title="{{item.product.name}}">
+    <ion-nav-buttons side="right" >
+        <span ng-show="showbutton == 'tab.product'">
+            
+            <button class="button button-icon ion-ios7-arrow-back" ng-click="previous(item.product.id);"></button>
+            <button class="button button-icon icon ion-ios7-arrow-forward" ng-click="next(item.product.id);"></button>
+        </span>
+        
+    </ion-nav-buttons>
     <ion-content class="has-header">
-        <ion-list>
             <ion-slide-box show-pager="true" auto-play="true" pager-click="true">
                 <ion-slide ng-repeat="itemimg in item.productimage">
                     <div class="box">
@@ -16,9 +23,10 @@
                     <p><strong style="float:left;">Quantity:</strong> <input type="number" ng-model="item.product.quantity2" class="numeric"> pcs</p>
 
                     <button class="button button-royal button-block icon-left ion-ios7-cart" ng-click="addtocart(item.product.id,item.product.name,item.product.price,item.product.quantity2)">Add to cart</button>
+                    <center><p>- or -</p></center>
+                    <button class="button button-royal button-block icon-left ion-ios7-heart" ng-click="addtowishlist()">Add to wishlist</button>
 
                 </div>
             </div>
-        </ion-list>
     </ion-content>
 </ion-view>
