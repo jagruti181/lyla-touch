@@ -196,13 +196,13 @@ img.socialicons {
     overflow: hidden
 }
 .button-royal2 {
-    background: #FCCED5;
-    border-color: #FCCDD5;
+    background: #FCCED5 !important;
+    border-color: #FCCDD5 !important;
     color: white;
 }
 .button-royal3 {
-    background: #B0FABD;
-    border-color: #B4F4C8;
+    background: #B0FABD !important;
+    border-color: #B4F4C8 !important;
     color: white;
 }
 .button-bold {
