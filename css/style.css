@@ -187,10 +187,24 @@ img.socialicons {
     color: #A3A3A3;
     font-weight: 500;
 }
-.tabs .tab-item .badge.badge-royal, .badge.badge-royal {
+.tabs .tab-item .badge.badge-royal,
+.badge.badge-royal {
     background-color: #03e1e4 !important;
     color: #fff;
 }
 .imageheight {
     overflow: hidden
+}
+.button-royal2 {
+    background: #FCCED5;
+    border-color: #FCCDD5;
+    color: white;
+}
+.button-royal3 {
+    background: #B0FABD;
+    border-color: #B4F4C8;
+    color: white;
+}
+.button-bold {
+    font-weight: bold;
 }
