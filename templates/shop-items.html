@@ -11,7 +11,7 @@
                         <div class="imageheight" style="width:{{imagewidth.width}}px;height:{{imagewidth.width}}px;">
                             <img src="{{pro.productimage[0].image|imagepath}}" class="full-image"> 
                         </div>
-                        <p class="royal productprice">{{pro.price|noFractionCurrency}}</p>
+                        <p class="royal productprice">{{pro.price|convertprice}}</p>
                     </div>
                 </a>
             </div>

@@ -1,5 +1,126 @@
 var adminurl = 'http://lyla@lylaloves.co.uk/admin/index.php/json/';
 
+var conversionrate = [{
+    id: "1",
+    name: "GBP",
+    conversionrate: "1",
+    isdefault: "1"
+}];
+//$.holdReady(true);
+$.getJSON(adminurl + "getconversionrates", {}, function (data) {
+
+    conversionrate = data;
+    //console.log("Conversion Rate");
+});
+
+
+var lat = 0;
+var long = 0;
+var currency = "GBP";
+var country = false;
+var showError = function (data) {
+    console.log(data);
+    $.holdReady(false);
+};
+var showlocationdata = function (data, status) {
+    console.log("in location success");
+    console.log(data);
+    var address = data.results[0].address_components;
+    for (var i = 0; i < address.length; i++) {
+        if (address[i].types.indexOf("country") >= 0) {
+            country = address[i].short_name;
+
+
+
+            var countries = ['AL', 'AD', 'AM', 'AT', 'BY', 'BE', 'BA', 'BG', 'CH', 'CY', 'CZ', 'DE',
+                             'DK', 'EE', 'ES', 'FO', 'FI', 'FR', 'GE', 'GI', 'GR', 'HU', 'HR',
+                             'IE', 'IS', 'IT', 'LT', 'LU', 'LV', 'MC', 'MK', 'MT', 'NO', 'NL', 'PL',
+                             'PT', 'RO', 'RU', 'SE', 'SI', 'SK', 'SM', 'TR', 'UA', 'VA'];
+
+            if (countries.indexOf(country) >= 0) {
+                country = "EUROPE";
+            }
+            console.log("Country ////////////////////////");
+            //case1 : short name: GB
+            console.log(country);
+            if (country == "GB") {
+                currency = "GBP";
+            } else if (country == "EUROPE") {
+                currency = "EURO";
+            } else {
+                currency = "USD";
+            }
+            console.log("Currency: " + currency);
+            break;
+        }
+    }
+    //$.holdReady(false);
+};
+
+var ongettingdata = function (data) {
+    console.log("in location success");
+    console.log(data);
+    country = data.country_code;
+
+    if (data) {
+        country = data.country_code;
+
+
+
+        var countries = ['AL', 'AD', 'AM', 'AT', 'BY', 'BE', 'BA', 'BG', 'CH', 'CY', 'CZ', 'DE',
+                         'DK', 'EE', 'ES', 'FO', 'FI', 'FR', 'GE', 'GI', 'GR', 'HU', 'HR',
+                         'IE', 'IS', 'IT', 'LT', 'LU', 'LV', 'MC', 'MK', 'MT', 'NO', 'NL', 'PL',
+                         'PT', 'RO', 'RU', 'SE', 'SI', 'SK', 'SM', 'TR', 'UA', 'VA'];
+
+        if (countries.indexOf(country) >= 0) {
+            country = "EUROPE";
+        }
+        console.log("Country ////////////////////////");
+        //case1 : short name: GB
+        console.log(country);
+        if (country == "GB") {
+            currency = "GBP";
+        } else if (country == "EUROPE") {
+            currency = "EURO";
+        } else {
+            currency = "USD";
+        }
+        console.log("Currency: " + currency);
+
+    }
+}
+$.holdReady(false);
+
+
+
+//start get country from geo location
+function CommonCode() {
+
+
+
+    function showPosition2(position) {
+        var latlon = position.coords.latitude + "," + position.coords.longitude;
+        console.log("Positions:.........");
+        console.log(position);
+        coords = position.coords;
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+        locationdata = lat + "," + long;
+
+        $.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + locationdata + "&key=AIzaSyAj0OXepKIgjTlZiPe_ZVYTDjL8rYpobgQ").success(showlocationdata);
+    }
+
+    console.log("common code");
+    $.getJSON("http://www.telize.com/geoip").success(ongettingdata);
+    /*if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition2, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }*/
+
+}
+CommonCode();
+
 var myservices = angular.module('myservices', [])
 
 .factory('MyServices', function ($http, $location) {

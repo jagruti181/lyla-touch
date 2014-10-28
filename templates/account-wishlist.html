@@ -7,7 +7,7 @@
             <ion-item class="item-thumbnail-left" href="#/tab/account/wishlist/product/{{wishlist.id}}" ng-repeat="wishlist in wishlists">
                 <img src="{{wishlist.image|imagepath}}">
                 <h2>{{wishlist.name}}</h2>
-                <h3 class="royal">{{wishlist.price|noFractionCurrency}}</h3>
+                <h3 class="royal">{{wishlist.price|convertprice}}</h3>
             </ion-item>
         </ion-list>
     </ion-content>

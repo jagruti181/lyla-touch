@@ -5,7 +5,7 @@
             <a class="item item-thumbnail-left" ng-repeat="product in products">
                 <img src="{{product.image|imagepath}}">
                 <h2>{{product.name}}</h2>
-                <h3 class="royal">{{product.price|currency}}</h3>
+                <h3 class="royal">{{product.price|convertprice}}</h3>
                 <p><strong>Quantity:</strong> {{product.qty}}</p>
                 <button class="button button-clear button-assertive button-small" ng-click="deletecart(product.id)">REMOVE</button>
             </a>
@@ -22,14 +22,14 @@
                 <i class="icon ion-ios7-pricetag"></i>
                 Discounted Amount
                 <span class="item-note">
-                    &pound; {{discountamount}}
+                     {{discountamount|convertprice}}
                 </span>
             </a>
             <a class="item item-icon-left">
                 <i class="icon ion-ios7-cart"></i>
                 Total Amount
                 <span class="item-note">
-                    &pound; {{subtotal-discountamount}}
+                     {{subtotal-discountamount|convertprice}}
                 </span>
             </a>
         </div>

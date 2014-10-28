@@ -603,6 +603,14 @@
             </div>
             <i class="radio-icon ion-checkmark"></i>
         </label>
+            <label class="item item-radio" ng-show="showshippingmethods==3 || showshippingmethods==4">
+                <input type="radio" name="group" value="7" ng-model="form.shippingmethod" ng-change="changeshippingcost(10)">
+                <div class="item-content">
+                    Express International Delivery &pound; 10.00
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+           
 
         <div class="item item-divider">Payment Information</div>
         <div class="padding">
@@ -613,14 +621,14 @@
             <a class="item item-thumbnail-left" ng-repeat="product in products">
                 <img src="{{product.image|imagepath}}">
                 <h2>{{product.name}}</h2>
-                <h3 class="royal">{{product.price|currency}}</h3>
+                <h3 class="royal">{{product.price|convertprice}}</h3>
                 <p><strong>Quantity:</strong> {{product.qty}}</p>
             </a>
             <a class="item item-icon-left">
                 <i class="icon ion-ios7-cart"></i>
                 Total Amount
                 <span class="item-note">
-                    {{subtotal+form.shippingcost-discountamount|noFractionCurrency}}
+                    {{subtotal+form.shippingcost-discountamount|convertprice}}
                 </span>
             </a>
         </div>

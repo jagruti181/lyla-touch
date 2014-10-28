@@ -45,7 +45,7 @@
                                 <div class="col col-20" ng-repeat="slider in sliders">
                                     <a href="#/tab/home/product/{{slider.link}}">
                                         <img src="{{slider.image|imagepath}}" class="full-image">
-                                        <p class="royal productprice">{{slider.price|noFractionCurrency}}</p>
+                                        <p class="royal productprice">{{slider.price|convertprice}}</p>
                                     </a>
                                 </div>
                             </div>
