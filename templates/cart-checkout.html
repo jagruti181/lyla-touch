@@ -619,7 +619,7 @@
         <!-- listing -->
         <div class="list">
             <a class="item item-thumbnail-left" ng-repeat="product in products">
-                <img src="{{product.image|imagepath}}">
+                <img ng-src="{{product.image|imagepath}}">
                 <h2>{{product.name}}</h2>
                 <h3 class="royal">{{product.price|convertprice}}</h3>
                 <p><strong>Quantity:</strong> {{product.qty}}</p>
