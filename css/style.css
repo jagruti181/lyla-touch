@@ -2,9 +2,11 @@
 
 @font-face {
     font-family: 'Cheddar Jack';
-    src: url('Cheddar Jack.ttf');
+    src: url('CheddarJack.ttf');
     font-weight: normal;
 }
+
+/*  Changes the name of the font. */
 @font-face {
     font-family: 'Raleway';
     src: url('Raleway-Regular.otf');
