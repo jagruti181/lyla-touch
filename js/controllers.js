@@ -275,7 +275,7 @@ angular.module('starter.controllers', ['myservices'])
         console.log($scope.subtotal);
         console.log(data);
         if (data.coupontype == '1') {
-            if (data.coupontype.discountpercent != '0') {
+            if (data.discountpercent != '0') {
                 $scope.ispercent = parseFloat(data.discountpercent);
                 $scope.discountamount = (subtotal * $scope.ispercent / 100);
             } else {
@@ -383,6 +383,26 @@ angular.module('starter.controllers', ['myservices'])
     $scope.form.shipdifferent = 1;
     $scope.showdiffaddress = function () {
         $scope.diffadd = true;
+    };
+    
+    function calcdiscountamount() {
+        var data = MyServices.getcoupondetails();
+        var subtotal = parseFloat($scope.subtotal);
+        console.log($scope.subtotal);
+        console.log(data);
+        if (data.coupontype == '1') {
+            if (data.discountpercent != '0') {
+                $scope.ispercent = parseFloat(data.discountpercent);
+                $scope.discountamount = (subtotal * $scope.ispercent / 100);
+            } else {
+                $scope.isamount = parseFloat(data.discountamount);
+                $scope.discountamount = $scope.isamount;
+            }
+        }
+        if (data.coupontype == 4) {
+            $scope.isfreedelivery = "Free Delivery";
+            $scope.discountamount = 0;
+        }
     };
 
     //check out chart
