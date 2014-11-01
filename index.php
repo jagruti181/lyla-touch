@@ -41,7 +41,7 @@
         };
 
         if (!isMobile.any()) {
-            window.location = "http://www.lylaloves.co.uk";
+            window.location = "http://www.lylaloves.co.uk"+window.location.hash;
         }
     </script>
     <!-- cordova script (this will be a 404 during development) -->
