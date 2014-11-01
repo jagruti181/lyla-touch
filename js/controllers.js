@@ -17,6 +17,23 @@ angular.module('starter.controllers', ['myservices'])
         $scope.sliders = data;
     };
     MyServices.getallslider().success(slidersuccess);
+    
+    //newsletter
+        var newslettersaved = function (data, status) {
+            if (data == "true") {
+                console.log("Thank You For Subscribe");
+            } else {
+                console.log("No Thank You For Subscribe");
+            }
+        };
+        $scope.newsletter = function (uemail) {
+            if (!uemail) {
+                alert("Please Enter Email");
+            } else {
+                MyServices.newsletter("", uemail, "").success(newslettersaved);
+            }
+        };
+        //newsletter
 
 })
 

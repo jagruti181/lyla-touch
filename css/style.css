@@ -213,3 +213,9 @@ img.socialicons {
 .ng-invalid.ng-dirty {
     border: 1px solid red;
 }
+.newsletterhome {
+    background: rgba(10, 255, 255, 0.25);
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 12px;
+}

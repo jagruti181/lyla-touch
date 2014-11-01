@@ -259,6 +259,11 @@ var myservices = angular.module('myservices', [])
                 withCredentials: true
             });
         },
+        newsletter: function (id, email, status) {
+            return $http.post(adminurl + 'newsletter?id=' + id + '&email=' + email + "&status=" + status, {}, {
+                withCredentials: true
+            });
+        },
         showwishlist: function (user) {
             return $http.post(adminurl + 'showwishlist?user=' + user, {}, {
                 withCredentials: true
