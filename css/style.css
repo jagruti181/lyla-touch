@@ -6,6 +6,7 @@
     font-weight: normal;
 }
 /*  Changes the name of the font. */
+
 @font-face {
     font-family: 'Raleway';
     src: url('Raleway-Regular.otf');
@@ -208,4 +209,7 @@ img.socialicons {
 }
 .button-bold {
     font-weight: bold;
+}
+.ng-invalid.ng-dirty {
+    border: 1px solid red;
 }

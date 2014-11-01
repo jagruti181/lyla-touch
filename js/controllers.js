@@ -381,10 +381,164 @@ angular.module('starter.controllers', ['myservices'])
     $scope.diffadd = false;
     $scope.form = {};
     $scope.form.shipdifferent = 1;
+    $scope.orcontinue=true;
+    $scope.deliverypayment=false;
+    $scope.allvalidation = [];
+    
+    
+    $scope.continueformshipping = function () {
+        
+	            
+    $scope.allvalidation = [{
+	                field: $scope.form.firstname,
+	                validation: ""
+             }, {
+	                field: $scope.form.lastname,
+	                validation: ""
+             }, {
+	                field: $scope.form.email,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingaddress,
+	                validation: ""
+             }, {
+	                field: $scope.form.phone,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingpincode,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingcountry,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingcity,
+	                validation: ""
+             }, {
+	                field: $scope.form.shippingaddress,
+	                validation: ""
+             }, {
+	                field: $scope.form.shippingpincode,
+	                validation: ""
+             }, {
+	                field: $scope.form.shippingcountry,
+	                validation: ""
+             }, {
+	                field: $scope.form.shippingcity,
+	                validation: ""
+             }];
+
+
+	            var check = formvalidation();
+	            console.log(check);
+	            if (check) {
+                    
+	                console.log("completed");
+	                console.log("Myform:");
+                    $scope.deliverypayment=true;
+	            }
+        
+    };
+    $scope.continuenoshipping = function () {
+        
+	            
+    $scope.allvalidation = [{
+	                field: $scope.form.firstname,
+	                validation: ""
+             }, {
+	                field: $scope.form.lastname,
+	                validation: ""
+             }, {
+	                field: $scope.form.email,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingaddress,
+	                validation: ""
+             }, {
+	                field: $scope.form.phone,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingpincode,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingcountry,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingcity,
+	                validation: ""
+             }];
+
+
+	            var check = formvalidation();
+	            console.log(check);
+	            if (check) {
+                    
+	                console.log("completed");
+	                console.log("Myform:");
+                    $scope.deliverypayment=true;
+	            }
+        
+        
+    };
     $scope.showdiffaddress = function () {
-        $scope.diffadd = true;
+        
+	            
+    $scope.allvalidation = [{
+	                field: $scope.form.firstname,
+	                validation: ""
+             }, {
+	                field: $scope.form.lastname,
+	                validation: ""
+             }, {
+	                field: $scope.form.email,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingaddress,
+	                validation: ""
+             }, {
+	                field: $scope.form.phone,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingpincode,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingcountry,
+	                validation: ""
+             }, {
+	                field: $scope.form.billingcity,
+	                validation: ""
+             }];
+
+
+	            var check = formvalidation();
+	            console.log(check);
+	            if (check) {
+                    
+	                console.log("completed");
+	                console.log("Myform:");
+                    $scope.diffadd = true;
+                    $scope.orcontinue=false;
+	            }
+        
+        
     };
     
+//    start shipping to different address fucntion
+    
+    
+	        function formvalidation() {
+	            var isvalid2 = true;
+	            for (var i = 0; i < $scope.allvalidation.length; i++) {
+	                console.log("checking");
+	                console.log($scope.allvalidation[i].field);
+	                if ($scope.allvalidation[i].field == "" || !$scope.allvalidation[i].field) {
+	                    $scope.allvalidation[i].validation = "ng-dirty";
+	                    isvalid2 = false;
+	                }
+	            }
+	            return isvalid2;
+	        }
+
+//    end shipping to different address fucntion
     function calcdiscountamount() {
         var data = MyServices.getcoupondetails();
         var subtotal = parseFloat($scope.subtotal);
