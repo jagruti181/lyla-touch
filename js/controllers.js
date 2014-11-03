@@ -754,7 +754,19 @@ angular.module('starter.controllers', ['myservices'])
         }
     });
 
-    $scope.StipePaymentGen = function (amount) {
+    $scope.StipePaymentGen = function (amount,form) {
+        console.log("strippaymentGen form");
+        
+        $scope.paywithcard = 1;
+        $scope.form.finalamount = $scope.subtotal;
+        console.log($scope.cart);
+        //MainJson.orderitem($scope.cart);
+        $scope.form.cart = $scope.cart;
+        $scope.form.user = $scope.id;
+        $scope.form.status = $scope.status;
+        $scope.getmessage=MyServices.placeorder(form);
+        console.log($scope.getmessage);
+        console.log(form);
         console.log("amount:" + amount);
         handler.open({
             name: 'Lyla Loves',
