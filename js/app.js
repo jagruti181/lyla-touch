@@ -62,6 +62,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
         }
     })
     
+    .state('tab.thankyou', {
+        url: '/thankyou',
+        views: {
+            'tab-home': {
+                templateUrl: 'templates/thankyou.html',
+                controller: 'ThankyouCtrl'
+            }
+        }
+    })
+    
     .state('tab.items', {
         url: '/dash/categories/:cid',
         views: {

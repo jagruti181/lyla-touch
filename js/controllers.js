@@ -235,6 +235,13 @@ angular.module('starter.controllers', ['myservices'])
 })
 
 
+.controller('ThankyouCtrl', function ($scope, $stateParams, MyServices) {
+    //get share it
+    //console.log("Chutia banauya");
+    
+})
+
+
 .controller('WishlistCtrl', function ($scope, $stateParams, MyServices) {
     //get wishlist
     var authenticate = function (data, status) {
@@ -731,7 +738,7 @@ angular.module('starter.controllers', ['myservices'])
 
     var paymentcomplete = function (data, status) {
         console.log(data);
-        window.location.href = "http://www.lylaloves.co.uk/#/thankyou";
+        window.location.href = "http://localhost/lyla-touch/#/tab/thankyou";
     };
 
     var handler = StripeCheckout.configure({
