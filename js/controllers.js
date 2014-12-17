@@ -397,6 +397,10 @@ angular.module('starter.controllers', ['myservices'])
 })
 
 .controller('CheckoutCtrl', function ($scope, MyServices) {
+    
+    $scope.showpaywithcard = false;
+    $scope.showplaceorder = true;
+    
     var ontotalsuccess = function (data, status) {
         $scope.gettotal = data;
     };
@@ -754,6 +758,24 @@ angular.module('starter.controllers', ['myservices'])
         }
     });
 
+    $scope.placeorder = function (amount,form) {
+        console.log("strippaymentGen form");
+        
+        $scope.paywithcard = 1;
+        $scope.form.finalamount = $scope.subtotal;
+        console.log($scope.cart);
+        //MainJson.orderitem($scope.cart);
+        $scope.form.cart = $scope.cart;
+        $scope.form.user = $scope.id;
+        $scope.form.status = $scope.status;
+        var placeordersuccess = function (data, status){
+            console.log(data);
+            $scope.showpaywithcard = true;
+            $scope.showplaceorder = false;
+        };
+        MyServices.placeorder(form).success(placeordersuccess);
+    };
+
     $scope.StipePaymentGen = function (amount,form) {
         console.log("strippaymentGen form");
         
@@ -764,8 +786,11 @@ angular.module('starter.controllers', ['myservices'])
         $scope.form.cart = $scope.cart;
         $scope.form.user = $scope.id;
         $scope.form.status = $scope.status;
-        $scope.getmessage=MyServices.placeorder(form);
-        console.log($scope.getmessage);
+        var placeordersuccess = function (data, status){
+            console.log(data);
+        };
+        MyServices.placeorder(form).success(placeordersuccess);
+//        console.log($scope.getmessage);
         console.log(form);
         console.log("amount:" + amount);
         handler.open({
