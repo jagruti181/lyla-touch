@@ -413,6 +413,9 @@ angular.module('starter.controllers', ['myservices'])
     $scope.deliverypayment=false;
     $scope.allvalidation = [];
     
+    $scope.paymentorderemail = "";
+    $scope.paymentorderid = 0;
+    
     
     $scope.continueformshipping = function () {
         
@@ -742,6 +745,7 @@ angular.module('starter.controllers', ['myservices'])
 
     var paymentcomplete = function (data, status) {
         console.log(data);
+        MainJson.orderemail($scope.paymentorderemail, $scope.paymentorderid).success(orderemailsend);
         window.location.href = "http://localhost/lyla-touch/#/tab/thankyou";
     };
 
@@ -758,6 +762,15 @@ angular.module('starter.controllers', ['myservices'])
         }
     });
 
+    
+    
+        var placeordersuccess = function (data, status){
+            console.log(data);
+            $scope.paymentorderid = data;
+            $scope.showpaywithcard = true;
+            $scope.showplaceorder = false;
+        };
+    
     $scope.placeorder = function (amount,form) {
         console.log("strippaymentGen form");
         
@@ -768,11 +781,7 @@ angular.module('starter.controllers', ['myservices'])
         $scope.form.cart = $scope.cart;
         $scope.form.user = $scope.id;
         $scope.form.status = $scope.status;
-        var placeordersuccess = function (data, status){
-            console.log(data);
-            $scope.showpaywithcard = true;
-            $scope.showplaceorder = false;
-        };
+        $scope.paymentorderemail = $scope.form.email;
         MyServices.placeorder(form).success(placeordersuccess);
     };
 
@@ -786,10 +795,6 @@ angular.module('starter.controllers', ['myservices'])
         $scope.form.cart = $scope.cart;
         $scope.form.user = $scope.id;
         $scope.form.status = $scope.status;
-        var placeordersuccess = function (data, status){
-            console.log(data);
-        };
-        MyServices.placeorder(form).success(placeordersuccess);
 //        console.log($scope.getmessage);
         console.log(form);
         console.log("amount:" + amount);
@@ -813,16 +818,16 @@ angular.module('starter.controllers', ['myservices'])
         MyServices.orderemail($scope.form.email, data).success(orderemailsend);
         alert("Order Placed");
     };
-    $scope.continuepayment = function (form) {
-        $scope.paywithcard = 1;
-        $scope.form.finalamount = $scope.subtotal;
-        console.log($scope.cart);
-        //MainJson.orderitem($scope.cart);
-        $scope.form.cart = $scope.cart;
-        $scope.form.user = $scope.id;
-        $scope.form.status = $scope.status; //MainJson.placeorder(form.firstname,form.lastname,form.email,form.company,form.billingaddress,form.billingcity,form.billingstate,form.billingpincode,form.billingcountry,form.phone,form.fax,form.shippingaddress,form.shippingcity,form.shippingstate,form.shippingpincode,form.shippingcountry,$scope.id,$scope.status).success(orderplaced); 
-        MyServices.placeorder(form).success(orderplaced);
-    }
+//    $scope.continuepayment = function (form) {
+//        $scope.paywithcard = 1;
+//        $scope.form.finalamount = $scope.subtotal;
+//        console.log($scope.cart);
+//        //MainJson.orderitem($scope.cart);
+//        $scope.form.cart = $scope.cart;
+//        $scope.form.user = $scope.id;
+//        $scope.form.status = $scope.status; //MainJson.placeorder(form.firstname,form.lastname,form.email,form.company,form.billingaddress,form.billingcity,form.billingstate,form.billingpincode,form.billingcountry,form.phone,form.fax,form.shippingaddress,form.shippingcity,form.shippingstate,form.shippingpincode,form.shippingcountry,$scope.id,$scope.status).success(orderplaced); 
+//        MyServices.placeorder(form).success(orderplaced);
+//    }
 
 })
 
