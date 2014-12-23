@@ -16,6 +16,7 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script>
