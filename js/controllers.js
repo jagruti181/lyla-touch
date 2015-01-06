@@ -261,7 +261,7 @@ angular.module('starter.controllers', ['myservices'])
 
 })
 
-.controller('CartCtrl', function ($scope, $stateParams, MyServices) {
+.controller('CartCtrl', function ($scope, $stateParams, MyServices, $ionicLoading) {
     //Product details
     $scope.subtotal = 0;
     $scope.cart = [];
@@ -283,6 +283,7 @@ angular.module('starter.controllers', ['myservices'])
     };
     MyServices.totalcart().success(getsubtotal);
     var onsuccess = function (data, status) {
+        $ionicLoading.hide();
         $scope.products = data;
         $scope.cart = data;
         for (var i = 0; i < data.length; i++) {
@@ -293,6 +294,15 @@ angular.module('starter.controllers', ['myservices'])
     MyServices.getcart().success(onsuccess);
     //coupon
 
+    //Loader
+    $ionicLoading.show({
+        template: 'Loading...',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 200,
+        showDelay: 500
+    });
+    
     $scope.discountamount = 0;
 
     function calcdiscountamount() {
