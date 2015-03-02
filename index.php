@@ -19,6 +19,7 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.min.js"></script>
     
+<!--
     <script>
         var isMobile = {
             Android: function () {
@@ -45,6 +46,7 @@
             window.location = "http://www.lylaloves.co.uk"+window.location.hash;
         }
     </script>
+-->
     
     <!-- cordova script (this will be a 404 during development) -->
     <!--    <script src="cordova.js"></script>-->
