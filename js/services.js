@@ -124,6 +124,7 @@ CommonCode();
 var myservices = angular.module('myservices', [])
 
 .factory('MyServices', function ($http, $location) {
+    
     var obj={};
     obj.badge=0;
     var retailer = 0;

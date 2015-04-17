@@ -12,6 +12,8 @@ angular.module('starter.controllers', ['myservices'])
 })
 
 .controller('HomeCtrl', function ($scope, $stateParams, MyServices) {
+    
+    
 
     var slidersuccess = function (data, status) {
         $scope.sliders = data;
