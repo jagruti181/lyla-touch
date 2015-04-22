@@ -91,7 +91,6 @@ a {
     border-color: #C9EEEA !important;
     border-bottom-width: 2px;
     background-color: #d8f2ef !important;
-    background-image: -webkit-linear-gradient(90deg, #d8f2ef, #d8f2ef 50%, transparent 50%) !important;
     background-image: linear-gradient(0deg, #d8f2ef, #d8f2ef 50%, transparent 50%) !important;
     color: #696969 !important;
 }
@@ -220,4 +219,58 @@ img.socialicons {
     margin-right: 5%;
     padding: 12px;
     margin-bottom: 5px;
+}
+a.fb-login {
+    background: #3c5a98 !important;
+    /* margin-right: 8px; */
+/*
+    border-color: #b2b2b2;
+  background-color: #f8f8f8;
+*/
+  
+    color: #FFF;
+  position: relative;
+  display: inline-block;
+  
+  padding: 0 12px;
+  min-width: 52px;
+  min-height: 47px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  vertical-align: top;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 42px;
+  cursor: pointer;
+    width: 100%;
+    margin: 5px auto;
+}
+a.g-login {
+      background: #dd4d3b; !important;
+    /* margin-right: 8px; */
+/*
+    border-color: #b2b2b2;
+  background-color: #f8f8f8;
+*/
+  
+    color: #FFF;
+  position: relative;
+  display: inline-block;
+  
+      margin: 5px auto;
+  padding: 0 12px;
+  min-width: 52px;
+  min-height: 47px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  vertical-align: top;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 42px;
+  cursor: pointer;
+    width: 100%;
 }
