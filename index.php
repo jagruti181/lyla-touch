@@ -44,7 +44,17 @@
         };
 
         if (!isMobile.any()) {
-            window.location = "http://www.lylaloves.co.uk"+window.location.hash;
+//            $url = "";
+//            switch()
+//            {
+//                case 1:{
+//                    
+//                }
+//                break;
+//                    
+//            }
+            
+            //window.location = "http://www.lylaloves.co.uk"+window.location.hash;
         }
     </script>
 
