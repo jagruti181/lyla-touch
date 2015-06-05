@@ -858,12 +858,13 @@ angular.module('starter.controllers', ['myservices'])
         $scope.paymentorderid = data;
         $scope.showpaywithcard = true;
         $scope.showplaceorder = false;
+        $scope.paywithcard = 1;
     };
 
     $scope.placeorder = function (amount, form) {
         console.log("strippaymentGen form");
 
-        $scope.paywithcard = 1;
+        
         $scope.form.finalamount = $scope.subtotal;
         console.log($scope.cart);
         //MainJson.orderitem($scope.cart);
