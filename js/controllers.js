@@ -262,7 +262,12 @@ angular.module('starter.controllers', ['myservices'])
 .controller('AccountCtrl', function ($scope) {
 
 })
+.controller('WholesaleCtrl', function ($scope) {
 
+})
+.controller('LylaboxCtrl', function ($scope) {
+
+})
 .controller('CartCtrl', function ($scope, $stateParams, MyServices, $ionicLoading) {
     //Product details
     $scope.subtotal = 0;

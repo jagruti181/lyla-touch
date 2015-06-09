@@ -91,6 +91,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
             }
         }
     })
+    .state('tab.wholesale', {
+        url: '/dash/wholesale',
+        views: {
+            'tab-dash': {
+                templateUrl: 'templates/wholesale.html',
+                controller: 'WholesaleCtrl'
+            }
+        }
+    })
+  .state('tab.lylabox', {
+        url: '/dash/lylabox',
+        views: {
+            'tab-dash': {
+                templateUrl: 'templates/lylabox.html',
+                controller: 'LylaboxCtrl'
+            }
+        }
+    })
 
     .state('tab.productwish', {
         url: '/account/wishlist/product/:pid',
