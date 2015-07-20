@@ -81,6 +81,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
             }
         }
     })
+    
+//      .state('tab.items', {
+//        url: '/dash/categories/:cid',
+//        views: {
+//            'tab-dash': {
+//                templateUrl: 'templates/sale.html',
+//                controller: 'SaleCtrl'
+//            }
+//        }
+//    })
 
     .state('tab.product', {
         url: '/dash/categories/product/:pid',

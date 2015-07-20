@@ -100,6 +100,55 @@ angular.module('starter.controllers', ['myservices'])
 
 })
 
+.controller('SaleCtrl', function ($scope, $stateParams, MyServices) {
+
+    var authenticate = function (data, status) {
+        console.log(data);
+        if (data != "false") {
+            $scope.loginlogouttext = "Logout";
+        }
+    };
+    $scope.imagewidth = {};
+    $scope.imagewidth.width = window.innerWidth / 3 - 15;
+
+    $(window).resize(function () {
+        $scope.imagewidth.width = window.innerWidth / 3 - 15;
+        console.log("Resized is called");
+        $scope.$apply();
+    });
+
+
+    MyServices.authenticate().success(authenticate);
+
+
+    var categoryId = $stateParams.cid;
+
+    $scope.productItem = [];
+    var change = 11;
+    var counter = 0;
+    $scope.products = [];
+    var onsuccess = function (data, status) {
+        $scope.products = data;
+        $scope.loadMore();
+
+    };
+    MyServices.getproductbycategory(categoryId).success(onsuccess);
+
+    $scope.loadMore = function () {
+        var sum = counter + change;
+        if (sum > $scope.products.product.length) {
+            sum = $scope.products.product.length;
+        }
+        for (var i = counter; i <= sum; i++) {
+            $scope.productItem.push($scope.products.product[i]);
+        };
+        counter += change + 1;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+    };
+
+
+})
+
 .controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicPopup, $timeout, $ionicLoading, MyServices, $location, $state) {
     //addtowishlist
 
